@@ -1,0 +1,28 @@
+{
+  "name": "cw-abandon-mouse-tracker",
+  "title": "CW Abandon Mouse Tracker",
+  "description": "Plugin to check when the mouse pointer is out of the viewport",
+  "version": "1.0.0",
+  "homepage": "https://github.com/clivewalkden/cw-abandon-mouse-tracker",
+  "author": {
+    "name": "Clive Walkden",
+    "url": "https://github.com/clivewalkden"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clivewalkden/cw-abandon-mouse-tracker"
+  },
+  "bugs": "https://github.com/clivewalkden/cw-abandon-mouse-tracker/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "~1.7.2"
+  },
+  "keywords": [
+    "jquery-plugin"
+  ]
+}

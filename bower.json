@@ -1,0 +1,10 @@
+{
+  "name": "cw-abandon-mouse-tracker",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "qunit": "~1.12.0",
+    "jquery": "~1.7.2",
+    "jquery.cookie": "1.4.1"
+  }
+}

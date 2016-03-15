@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>CW Abandon Mouse Tracker v1.0.0 | jQuery Plugin | Clive Walkden</title>
+<meta name="description" content="Plugin to check when the mouse pointer is out of the viewport">
+
+<meta name="viewport" content="width=device-width">
+
+<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+<link href="http://clivewalkden.co.uk/code/template/css/bootstrap.css" rel="stylesheet">
+<link href="http://clivewalkden.co.uk/code/template/css/main.css" rel="stylesheet">
+<link href="http://clivewalkden.co.uk/code/template/css/prettify.css" rel="stylesheet">
+</head>
+<body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+        <header>
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <h1>CW Abandon Mouse Tracker v1.0.0</h1>
+                </div>
+                <div class="span6">
+                    <h2>Javascript alert messages made easy.</h2>
+                </div>
+            </div>
+        </div>
+        </header>
+
+        <div class="container">
+        <div class="row">
+            <div class="span12 center">
+                <a href="https://github.com/clivewalkden/cw-abandon-mouse-tracker" class="btn btn-large btn-inverse" target="_blank">View Project on Github »</a>
+                <a href="https://github.com/clivewalkden/cw-abandon-mouse-tracker/archive/master.zip" class="btn btn-large">Download CW Abandon Mouse Tracker</a>
+            </div>
+        </div>
+    </div>
+
+    <div role="main" class="container">
+        <div class="row">
+            <div class="span12">
+                <img src="https://travis-ci.org/clivewalkden/cw-abandon-mouse-tracker.png?branch=master">
+                <p>Plugin to check when the mouse pointer is out of the viewport</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span12">
+                <div class="page-header">
+                    <h1>Basic Usage</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span12">
+                <p>The code below...</p>
+                <pre class="prettyprint linenums lang-html">&lt;!-- Message --&gt;
+&lt;a href="#" class="alert"&gt;Delete Page&lt;/a&gt;
+
+&lt;script&gt;
+// Finally call the script
+$(function(){
+    $('.alert').cw-abandon-mouse-tracker();
+});
+&lt;/script&gt;</pre>
+            </div>
+            <div class="span12">
+                <p>... produces this</p>
+                <a href="#" class="demo1">Delete Page</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <div class="page-header">
+                    <h1>Configuration Options</h1>
+                </div>
+            </div>
+            <div class="span12">
+                <table class="table table-bordered">
+                <tr>
+                    <th>Property</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>message</td>
+                    <td>string</td>
+                    <td><code>Are you sure?</code></td>
+                    <td>The message which is displayed in the alert window.</td>
+                </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span12">
+                <div class="page-header">
+                    <h1>Other Examples</h1>
+                </div>
+                <p>Below are some more examples of the script.</p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="span12">
+                <div class="page-header">
+                    <h1>Changelog</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span12">
+                <table class="table table-bordered table-striped">
+                <tr>
+                    <td><strong>v1.0.0</strong></td>
+                    <td></td>
+                    <td>Created the first version of the script based on previous created scripts.</td>
+                </tr>
+                </table>
+            </div>
+        </div>
+        </div>
+
+        <footer>
+
+        </footer>
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
+<script>window.jQuery || document.write('<script src="bower_components/jquery/jquery.js"><\/script>')</script>
+
+<script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+<script src="src/cw-abandon-mouse-tracker.js?v=1.0.0"></script>
+<script src="http://clivewalkden.co.uk/code/template/js/bootstrap.js"></script>
+<script src="http://clivewalkden.co.uk/code/template/js/prettify.js"></script>
+
+<script>
+$(function(){
+    window.prettyPrint && prettyPrint();
+})
+</script>
+
+<script>
+$(function(){
+    $.cookie('test', 'test');
+
+    $.CWAbandonMouseTracker({
+      callback : function(){
+        alert('fired');
+      }
+    });
+
+    // $.fn.down = function() {
+    //     var el = this[0] && this[0].firstChild;
+    //     while (el && el.nodeType != 1)
+    //         el = el.nextSibling;
+    //     return $(el);
+    // };
+
+    // var AbandonMouseTracker = {
+    //     prop: {
+    //       callback          : function() {},
+    //       triggerYPos       : 12,
+    //       mobileScroll      : true,
+    //       pxPerMs           : -7,
+    //       topPosition       : 500,
+    //       debug             : true,
+    //       mousePosY         : null,
+    //       mouseOutHandler   : null,
+    //       scrollTime        : null,
+    //       windowTop         : null,
+    //     },
+    //     init: function (options) {
+    //         var self = this;
+
+    //         this.prop = $.extend({}, this.prop, options);
+
+    //         self.mousePosY = null;
+
+    //         self.mouseOutHandler = this.mouseOut.bind(this);
+    //         this.mouseMoveHandler = this.mouseMove.bind(this);
+    //         this.scrollHandler = this.scroll.bind(this);
+    //         this.initEvents();
+    //         },
+    //     initEvents: function() {
+    //         $(document).bind('mouseout', this.prop.mouseOutHandler);
+    //         $(document).bind('mousemove', this.mouseMoveHandler);
+    //         if(this.prop.mobileScroll) {
+    //           $(document).bind('scroll', this.scrollHandler);
+    //         }
+    //     },
+    //     stopEvents: function() {
+    //         $(document).unbind('mouseout', this.prop.mouseOutHandler);
+    //         $(document).unbind('mousemove', this.mouseMoveHandler);
+    //         if(this.prop.mobileScroll) {
+    //           $(document).unbind('scroll', this.scrollHandler);
+    //         }
+    //     },
+    //     scroll : function(e) {
+    //         var self = this;
+    //         if(typeof window.matchMedia !== 'function' ||  !window.matchMedia('(max-width: 767px)').matches) {
+    //           this.debug('matchMedia found');
+    //           self.prop.scrollTime = null;
+    //           self.prop.windowTop = null;
+    //           return;
+    //         }
+
+    //         if(self.prop.scrollTime && self.prop.windowTop) {
+    //           var delayInMs = e.timeStamp - self.prop.scrollTime;
+    //           var offset = this.getWindowTopPosition() - self.prop.windowTop;
+    //           var speedInpxPerMs = offset / delayInMs;
+    //           if(speedInpxPerMs < self.prop.pxPerMs && self.getWindowTopPosition() < self.prop.topPosition) {
+    //               self.prop.callback();
+    //           }
+    //         }
+    //         self.prop.scrollTime = e.timeStamp;
+    //         self.prop.windowTop = self.getWindowTopPosition();
+    //     },
+    //     mouseOut : function(e) {
+    //         var self = this;
+    //         e = e ? e : window.event;
+    //         var from = e.relatedTarget || e.toElement;
+    //         if (!from || from.nodeName === "HTML") {
+    //           // If last known mouse position was top 10% of screen
+    //           if(self.prop.mousePosY < this.getWindowHeight() / 10) {
+    //               self.prop.callback();
+    //           } else {
+    //               self.prop.mousePosY = 0;
+    //           }
+    //         }
+    //     },
+    //     getWindowTopPosition : function() {
+    //         var doc = document.documentElement;
+    //         this.debug(doc);
+    //         return (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    //     },
+    //     getWindowHeight : function() {
+    //         var height = window.innerHeight || (window.document.documentElement.clientHeight  || window.document.body.clientHeight);
+    //         this.debug(height);
+    //         return height;
+    //     },
+    //     mouseMove : function(e) {
+    //         var self = this;
+    //         this.debug(e.clientY);
+    //         if(e.clientY < self.prop.triggerYPos && self.prop.mousePosY > e.clientY) {
+    //           self.prop.callback();
+    //         }
+    //         self.prop.mousePosY = e.clientY;
+    //     },
+    //     debug: function(message) {
+    //         if (this.prop.debug && typeof console !== 'undefined' && typeof console.debug !== 'undefined') {
+    //         console.debug(message);
+    //         }
+    //     }
+    // };
+
+    // var SOZOCookie = {
+    //     prop: {
+    //         name : null,
+    //     },
+    //     init: function(name) {
+    //         this.prop.name = 'sozo_'+name;
+    //     },
+
+    //     setValue : function (value, lifetime,domain) {
+    //         var cookieVal = this.prop.name+'='+value+';';
+    //         if(typeof lifetime !== 'undefined' && lifetime != 0) {
+    //             var date = new Date();
+    //             date.setHours(date.getHours() + lifetime);
+    //             cookieVal += ' expires='+date+';';
+    //         }
+    //         if(typeof(domain) !== 'undefined' && domain != null) {
+    //             cookieVal += ' domain='+domain+';';
+    //         }
+    //         cookieVal += ' path=/';
+    //         document.cookie = cookieVal;
+    //     },
+
+    //     getValue : function() {
+    //         var name = this.prop.name+'=';
+    //         var ca = document.cookie.split(';');
+    //         for(var i=0; i<ca.length; i++) {
+    //             var c = ca[i];
+    //             while (c.charAt(0)==' ') c = c.substring(1);
+    //             if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    //         }
+    //         return "";
+    //     },
+
+    //     deleteCookie : function() {
+    //         document.cookie = this.prop.name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //     }
+    // };
+
+    // var AbandonPopup  = {
+    //     prop: {
+    //         openCallback        : function(){},
+    //         closeCallback       : function(){},
+    //         submissionCallback  : function() {},
+    //         successCallback     : function() {},
+    //         maxTriggers         : 5,
+    //         ajaxUrl             : null,                     // Required
+    //         ajaxLoad            : true,
+    //         cookieName          : 'browserabandonment',
+    //         cookieLifetime      : 12,
+    //         cookieDomain        : null,
+    //         modalSelectors      : null,
+    //         htmlElement         : null,
+    //         debug               : true
+    //     },
+    //     init: function(options) {
+    //         this.prop = $.extend({}, this.prop, options);
+
+    //         // this.active = 0; // 0 -> closed, 1 -> open
+
+    //         // Initialise the cookie
+    //         SOZOCookie.init(this.prop.cookieName);
+    //         var cookieVal = SOZOCookie.getValue();
+
+    //         if(cookieVal.length == 0 || (this.prop.maxTriggers != 0 && cookieVal < this.prop.maxTriggers )) {
+    //             // No cookie exists
+    //             if(this.prop.ajaxLoad) {
+    //                 this.getOfferHtml();
+    //             } else if(!this.prop.ajaxLoad && $(this.htmlElement).down('.browser-abandonment-offer')) {
+    //                 AbandonMouseTracker.init({callback : this.open.bind(this)});
+    //                 $(this.htmlElement).on('click','.close-modal',this.close.bind(this));
+    //                 $(this.htmlElement).on('submit','form',this.submitForm.bind(this));
+    //             }
+    //         }
+    //     },
+    //     submitForm : function(event) {
+    //         // if(event instanceof Event) {
+    //         //     event.preventDefault();
+    //         // }
+    //         // var form = $(this.htmlElement).down('form');
+    //         // var self = this;
+    //         // if(form.down('#advice-validate-error')) {
+    //         //     form.down('#advice-validate-error').remove();
+    //         // }
+    //         // if(form.down('.ajax-loader')) {
+    //         //     form.down('.ajax-loader').show();
+    //         //     form.down('button.submit').hide();
+    //         // }
+    //         // self.prop.submissionCallback();
+    //         // var parameters = self.getParameters();
+    //         // Object.extend(parameters,form.serialize(true));
+    //         // new Ajax.Request(form.action, {
+    //         //     method: form.method,
+    //         //     parameters: parameters,
+    //         //     onSuccess: function(response) {
+    //         //         var json = response.responseText.evalJSON();
+    //         //         if(json.success) {
+    //         //             //var curHeight = $(self.htmlElement).down('.result-container').getStyle('height');
+    //         //             $(self.htmlElement).down('.result-container').innerHTML = json.html;
+    //         //             //$(self.htmlElement).down('.result-container').setStyle({height:curHeight});
+    //         //             self.disable();
+    //         //             self.prop.successCallback();
+    //         //         } else {
+    //         //             $(self.htmlElement).down('input').insert({after:json.html});
+    //         //         }
+    //         //     },
+    //         //     onFailure: function(oXHR, oJson) {
+    //         //         alert('An error occurred, please try again');
+    //         //     },
+    //         //     onComplete: function(response) {
+    //         //         if(form.down('.ajax-loader')) {
+    //         //             form.down('.ajax-loader').hide();
+    //         //             form.down('button.submit').show();
+    //         //         }
+    //         //     }
+    //         // });
+    //     },
+    //     disable : function() {
+    //         SOZOCookie.setValue(this.prop.maxTriggers,this.prop.cookieLifetime, this.prop.cookieDomain);
+    //         this.mouseTracker.stopEvents();
+    //     },
+    //     getOfferHtml : function() {
+    //         var self = this;
+    //         new Ajax.Updater(self.htmlElement,self.ajaxUrl, {
+    //             method: 'get',
+    //             parameters: self.getParameters(),
+    //             evalScripts: true,
+    //             onSuccess: function(transport) {
+    //                 if(transport.responseText.trim().length > 0){
+    //                     self.mouseTracker = AbandonMouseTracker.init({callback : self.open.bind(self)});
+    //                     $(self.htmlElement).on('click','.close-modal',self.close.bind(self));
+    //                     $(self.htmlElement).on('submit','form',self.submitForm.bind(self));
+    //                 }
+    //             }
+    //         });
+    //     },
+    //     open : function() {
+    //         if(!this.active && !this.otherModalsOpen()) {
+    //             // Initialise the cookie
+    //             SOZOCookie.init(this.prop.cookieName);
+    //             var cookieVal = parseInt(SOZOCookie.getValue());
+    //             if(isNaN(cookieVal)) {
+    //                 cookieVal= 1;
+    //             } else {
+    //                 cookieVal++;
+    //             }
+    //             SOZOCookie.setValue(cookieVal,this.prop.cookieLifetime, this.prop.cookieDomain);
+    //             AbandonMouseTracker.stopEvents();
+    //             this.prop.openCallback();
+    //             this.active = 1;
+    //         }
+    //     },
+    //     otherModalsOpen : function() {
+    //         var result = false;
+    //         if(this.prop.modalSelectors) {
+    //             $(this.prop.modalSelectors).each(function(elem) {
+    //                 if(elem.offsetWidth > 0 && elem.offsetHeight > 0) {
+    //                     result = true;
+    //                     return;
+    //                 }
+    //             });
+    //         }
+    //         return result;
+    //     },
+    //     setActive : function(value) {
+    //         this.active = value;
+    //     },
+    //     close : function() {
+    //         if(this.active) {
+    //             this.prop.closeCallback();
+    //             this.active = 0;
+    //         }
+    //     },
+    //     getParameters : function() {
+    //         return { url : document.URL };
+    //     },
+    //     debug: function(message) {
+    //         if (this.prop.debug && typeof console !== 'undefined' && typeof console.debug !== 'undefined') {
+    //             console.debug(message);
+    //         }
+    //     }
+    // };
+
+
+    // var browserAbandonConfig = {
+    //     ajaxUrl : 'http://www.brooktaverner.co.uk/brightowl/browser/ajax/',
+    //     htmlElement : 'ajax-offer-content',
+    //     maxTriggers : 1,
+    //     ajaxLoad : false,
+    //     cookieLifetime : 12,
+    //     cookieDomain: 'localhost',
+    //     modalSelectors : ['.ajaxcartpro-box-show','#sb-wrapper'],
+    //     openCallback    : function() {
+    //         console.log('openCallback');
+    //         $('#browser-abandonment-modal').modal('show');
+    //     },
+    //     successCallback : function() {
+    //         console.log('successCallback');
+    //     },
+    //     closeCallback   : function() {
+    //         console.log('closeCallback');
+    //         $('#browser-abandonment-modal').modal('hide');
+    //     }
+    // };
+
+    // var browserAbandon = AbandonPopup.init(browserAbandonConfig);
+
+    // $('#browser-abandonment-modal').modal({show: false});
+
+    // $('#browser-abandonment-modal').on('show.bs.modal', function (e) {
+    //     browserAbandon.setActive(1);
+    // });
+
+    // $('#browser-abandonment-modal').on('hidden.bs.modal', function (e) {
+    //     browserAbandon.setActive(0);
+    // });
+
+});
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '', 'clivewalkden.co.uk');
+    ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
