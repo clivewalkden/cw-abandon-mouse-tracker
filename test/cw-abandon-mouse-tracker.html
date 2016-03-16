@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css" media="screen">
   <script src="../bower_components/qunit/qunit/qunit.js"></script>
   <!-- Load local lib and tests. -->
+  <script src="../bower_components/jquery.cookie/jquery.cookie.js"></script>
   <script src="../src/cw-abandon-mouse-tracker.js"></script>
   <script src="cw-abandon-mouse-tracker_test.js"></script>
   <!-- Removing access to jQuery and $. But it'll still be available as _$, if
@@ -17,11 +18,13 @@
   <script>window._$ = jQuery.noConflict(true);</script>
 </head>
 <body>
-  <div id="qunit"></div>
+  <h1 id="qunit-header">CW Abandon Mouse Tracker Plugin Test Suite</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+
   <div id="qunit-fixture">
-    <span>lame test markup</span>
-    <span>normal test markup</span>
-    <span>awesome test markup</span>
   </div>
 </body>
 </html>

@@ -147,12 +147,12 @@ $(function(){
 
 <script>
 $(function(){
-    $.cookie('test', 'test');
-
     $.CWAbandonMouseTracker({
       callback : function(){
         alert('fired');
-      }
+        $.CWAbandonMouseTracker('cookieSet');
+      },
+      debug   : true
     });
 
     // $.fn.down = function() {

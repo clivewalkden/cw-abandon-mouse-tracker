@@ -23,53 +23,75 @@
         pxPerMs       : -7,
         topPosition   : 500,
         cookieName    : 'sozo_abandonmousetracker',
-        debug         : true
+        debug         : false
     };
 
-    $.CWAbandonMouseTracker = function (custom) {
-        // Merge default and user settings
-        var settings = $.extend({}, defaults, custom);
+    var prop = {
+        mousePosY       : null,
+        mouseOutHandler : null,
+        mouseMoveHandler: null,
+        scroll          : null,
+        scrollTime      : null,
+        windowTop       : null
+    };
 
-        var prop = {
-            mousePosY       : null,
-            mouseOutHandler : null,
-            scrollTime      : null,
-            windowTop       : null
-        };
+    var settings = {};
 
-        function init() {
-            if (typeof $.cookie === 'object' && $.cookie(this.settings.cookieName).length > 0) {
-                debug('Cookie set skipping');
+    var methods = {
+        init: function(options) {
+            // Merge default and user settings
+            settings = $.extend({}, defaults, options);
+
+            if (methods.cookieCheck()) {
                 return;
             }
 
             prop.mousePosY = null;
 
-            prop.mouseOutHandler = mouseOut.bind(this);
-            this.mouseMoveHandler = mouseMove.bind(this);
-            this.scrollHandler = scroll.bind(this);
-            initEvents();
-        }
-
-        function initEvents() {
+            prop.mouseOutHandler = methods.mouseOut.bind(this);
+            prop.mouseMoveHandler = methods.mouseMove.bind(this);
+            prop.scrollHandler = methods.scroll.bind(this);
+            methods.initEvents();
+        },
+        cookieCheck : function() {
+            if ($.cookie(settings.cookieName) !== 'undefined' && $.cookie(settings.cookieName) === 'true') {
+                methods.debug('Cookie set, not running plugin');
+                return true;
+            } else if ($.cookie(settings.cookieName) === 'false') {
+                methods.debug('Cookie set to false');
+            } else {
+                methods.debug('Cookie not created');
+                methods.cookieCreate();
+            }
+        },
+        cookieSet : function() {
+            methods.debug('Cookie set');
+            $.cookie(settings.cookieName, 'true');
+        },
+        cookieCreate : function() {
+            methods.debug('Cookie created');
+            $.cookie(settings.cookieName, 'false');
+        },
+        initEvents : function() {
+            methods.debug('initEvents called');
             $(document).bind('mouseout', prop.mouseOutHandler);
-            $(document).bind('mousemove', this.mouseMoveHandler);
+            $(document).bind('mousemove', prop.mouseMoveHandler);
             if(settings.mobileScroll) {
-                $(document).bind('scroll', this.scrollHandler);
+                $(document).bind('scroll', prop.scrollHandler);
             }
-        }
-
-        function stopEvents() {
+        },
+        stopEvents : function() {
+            methods.debug('stopEvents called');
             $(document).unbind('mouseout', prop.mouseOutHandler);
-            $(document).unbind('mousemove', this.mouseMoveHandler);
+            $(document).unbind('mousemove', prop.mouseMoveHandler);
             if(settings.mobileScroll) {
-                $(document).unbind('scroll', this.scrollHandler);
+                $(document).unbind('scroll', prop.scrollHandler);
             }
-        }
-
-        function scroll(e) {
+        },
+        scroll : function(e) {
+            methods.debug('scroll detected');
             if(typeof window.matchMedia !== 'function' ||  !window.matchMedia('(max-width: 767px)').matches) {
-                debug('matchMedia found');
+                methods.debug('matchMedia found');
                 prop.scrollTime = null;
                 prop.windowTop = null;
                 return;
@@ -77,59 +99,62 @@
 
             if(prop.scrollTime && prop.windowTop) {
                 var delayInMs = e.timeStamp - prop.scrollTime;
-                var offset = getWindowTopPosition() - prop.windowTop;
+                var offset = methods.getWindowTopPosition() - prop.windowTop;
                 var speedInpxPerMs = offset / delayInMs;
-                if(speedInpxPerMs < settings.pxPerMs && getWindowTopPosition() < settings.topPosition) {
+                if(speedInpxPerMs < settings.pxPerMs && methods.getWindowTopPosition() < settings.topPosition) {
                     settings.callback();
-                    stopEvents();
+                    methods.stopEvents();
                 }
             }
             prop.scrollTime = e.timeStamp;
-            prop.windowTop = getWindowTopPosition();
-        }
-
-        function mouseOut(e) {
+            prop.windowTop = methods.getWindowTopPosition();
+        },
+        mouseOut : function(e) {
             e = e ? e : window.event;
             var from = e.relatedTarget || e.toElement;
             if (!from || from.nodeName === "HTML") {
                 // If last known mouse position was top 10% of screen
-                if(prop.mousePosY < getWindowHeight() / 10) {
+                if(prop.mousePosY < methods.getWindowHeight() / 10) {
                     settings.callback();
-                    stopEvents();
+                    methods.stopEvents();
                 } else {
                     prop.mousePosY = 0;
                 }
             }
-        }
-
-        function getWindowTopPosition() {
+        },
+        getWindowTopPosition : function() {
             var doc = document.documentElement;
-            debug(doc);
+            methods.debug(doc);
             return (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
-        }
-
-        function getWindowHeight() {
+        },
+        getWindowHeight : function() {
             var height = window.innerHeight || (window.document.documentElement.clientHeight  || window.document.body.clientHeight);
-            debug(height);
+            methods.debug(height);
             return height;
-        }
-
-        function mouseMove(e) {
-            debug(e.clientY);
+        },
+        mouseMove : function(e) {
+            methods.debug(e.clientY);
             if(e.clientY < settings.triggerYPos && prop.mousePosY > e.clientY) {
                 settings.callback();
-                stopEvents();
+                methods.stopEvents();
             }
             prop.mousePosY = e.clientY;
-        }
-
-        function debug(message) {
+        },
+        debug : function(message) {
             if (settings.debug && typeof console !== 'undefined' && typeof console.debug !== 'undefined') {
                 console.debug(message);
             }
         }
+    };
 
-        init();
+    $.CWAbandonMouseTracker = function (custom) {
+        if (methods[custom]) {
+            return methods[custom].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof custom === 'object' || ! custom) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error( 'Method ' +  custom + ' does not exist on jQuery.CWAbandonMouseTracker' );
+        }
     };
 
 }));
