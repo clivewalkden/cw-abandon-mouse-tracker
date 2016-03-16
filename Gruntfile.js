@@ -19,7 +19,7 @@ module.exports = function (grunt) {
       '* @package <%= pkg.description %>\n' +
       '* @author <%= pkg.author.name %> (<%= pkg.author.url %>)\n' +
       '* @version <%= pkg.version %>\n' +
-      '* @license <%= props.license %>\n' +
+      '* @license <%= pkg.license %>\n' +
       '* @copyright Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> (<%= pkg.author.url %>)\n' +
       '* @date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '*/\n\n',
@@ -110,4 +110,6 @@ module.exports = function (grunt) {
   });
   grunt.registerTask('serve', ['connect', 'watch']);
   grunt.registerTask('test', ['jshint', 'connect', 'qunit']);
+
+  grunt.registerTask('launch', ['clean','concat','uglify']);
 };
