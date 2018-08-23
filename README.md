@@ -1,5 +1,7 @@
 # CW Abandon Mouse Tracker
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/clivewalkden/cw-abandon-mouse-tracker.svg)](https://greenkeeper.io/)
+
 Plugin to check when the mouse pointer is out of the viewport
 
 ## Getting Started
